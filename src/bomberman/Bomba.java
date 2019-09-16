@@ -16,8 +16,9 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.sound.sampled.*;
-import bomberman.Sonidos;
-
+import java.applet.AudioClip;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Bomba extends MapaBasico implements Runnable {
 
@@ -28,12 +29,12 @@ public class Bomba extends MapaBasico implements Runnable {
     static int temporizadorExplosion = 10;
     Thread pulsate;
     Thread explode;
-    Sonidos sonido;
+    //Sonidos sonido;
 
     public Bomba(Posicion _position) {
-        
+
         super(Tipos.TipoBloque.BOMBA, _position);
-        sonido = new Sonidos();
+        //sonido = new Sonidos();
         /*
         pulsate = new Thread(new Runnable() {    
             public void run() {
@@ -54,7 +55,8 @@ public class Bomba extends MapaBasico implements Runnable {
         pulsate.start();*/
         pulsate = new Thread(this);
         pulsate.start();
-        
+
+
     }
 
     public Rectangle getBounds() {
@@ -64,23 +66,30 @@ public class Bomba extends MapaBasico implements Runnable {
     @Override
     public void run() {
         int timer = 0;
-                while (timer < temporizadorExplosion) {
-                    try {
-                        Thread.sleep(retraso);
-                    } catch (InterruptedException e) {
-                        System.out.println("interrupted");
-                    }
-                    timer++;
-                    pulsar();
-                }
-                explotar();
+        while (timer < temporizadorExplosion) {
+            try {
+                Thread.sleep(retraso);
+            } catch (InterruptedException e) {
+                System.out.println("interrupted");
+            }
+            timer++;
+            pulsar();
+        }
+        explotar();
+        AudioClip sonido;
+        sonido = java.applet.Applet.newAudioClip(getClass().getResource("/musica/explosion.wav"));
+        sonido.play();
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Bomba.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("BOMB THREAD STARTED");
     }
 
     public void explotar() {
         BomberMan.jugadores.get(0).bombas.remove(0);
         Fuego.startFire(getPosition());
-        sonido.explosion();
     }
 
     public void pulsar() {
