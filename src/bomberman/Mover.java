@@ -1,15 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bomberman;
 
 import bomberman.Tipos.*;
 
-/**
- *
- * @author Hassan
- */
+
 public class Mover {
 
     public static void Move(Jugador player) {

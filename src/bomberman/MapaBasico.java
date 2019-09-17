@@ -1,14 +1,6 @@
-/*
- * This class is the basic bloack for all the elemnts of map we use this class in
- * order to keep all the different type of the objetc in the array of map in the Map class.
- * So every object that we have to put on the map must extend this class.
- 
- */
+
 package bomberman;
-/*
- * importing the the enumeration "BlockType" from the class Types 
- * that is defined in the packege bomberman
- */
+
 
 import bomberman.Tipos.*;
 import java.awt.Image;
@@ -43,9 +35,7 @@ public class MapaBasico {
         }
     }
 
-    /*
-     * This function return the type of the Block on the map.
-     */
+
     public TipoBloque getBlockType() {
         return blockType;
     }
@@ -58,7 +48,7 @@ public class MapaBasico {
         position = newPosition;
     }
 
-    //MY
+    //YO
     public Image getImage() {
         return image;
     }
@@ -75,7 +65,7 @@ public class MapaBasico {
     }
     
     
-    ///bomb
+    ///bomba
         public void setX(int x){
         this.getPosition().setXPos(x);
     }

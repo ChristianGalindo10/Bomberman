@@ -1,6 +1,4 @@
-/*
- * This class must have all the gui implementation of the game.
- */
+
 package bomberman;
 
 import java.awt.*;
@@ -23,7 +21,7 @@ public class MapaGui extends JFrame {
         this.setTitle(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //Creating Panel
+        //Creando Panel
         this.mapa = mapa;
         GridLayout gL = new GridLayout(15, 15);
         panel = new JPanel(gL) {
@@ -59,7 +57,6 @@ public class MapaGui extends JFrame {
         //Timers
         timer = new Timer(5, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //    if(BomberMan.players.isEmpty()) dispose();
                 for (Jugador i : BomberMan.jugadores) {
                     Mover.Move(i);
                 }
@@ -111,7 +108,6 @@ public class MapaGui extends JFrame {
                     BomberMan.jugadores.get(0).plantBomb();
                     break;
                 case KeyEvent.VK_B:
-//                    BomberMan.map.breakBrickAt(0, 0);
                     BomberMan.mapa.map[0][0].setIcon(Img.sueloDefecto);
                     break;
             }
@@ -129,11 +125,11 @@ public class MapaGui extends JFrame {
             return;
         }
         Graphics2D g2d = (Graphics2D) g;
-        //Draw Enemies
+        //Dibujar enemigos
         for (Enemigo enemigo : BomberMan.enemigos) {
             g2d.drawImage(enemigo.getImage(), enemigo.getX(), enemigo.getY(), null);
         }
-        //Draw Players and their Bombs
+        //Dibujar jugadores 
         for (Jugador jugador : BomberMan.jugadores) {
             g2d.drawImage(jugador.getImage(), jugador.getX(), jugador.getY(), null);
             for(Bomba bomba : jugador.bombas){

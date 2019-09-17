@@ -1,7 +1,3 @@
-/*
- * In this class you will instentialte other classes and game playe will be
- * implemented here.
- */
 package bomberman;
 
 import bomberman.Tipos.TipoBloque;

@@ -1,8 +1,4 @@
-/*
- * 
- * This class will holde all the information of the map and will have approperiate
- * methods to perform diffrent tasks on map.
- */
+
 package bomberman;
 
 import java.io.Serializable;
@@ -67,7 +63,7 @@ public class Mapa implements Serializable{
     public JLabel getLabel(int i, int j) {
         return map[i][j];
     }
-    //Returns coordinates of Bricks
+    //Returna coordenadas de bloque
 
     public int getX(int i, int j) {
         return (position[i][j].getxPos());
@@ -125,10 +121,10 @@ public class Mapa implements Serializable{
     }
 
     private void bonus(Posicion pos) {
-        //Random Number Between 0 and 10
+        //Numero random entre 0 y 10
         int r = 0 + (int) (Math.random() * ((10 - 0) + 1));
         if(r>3){
-            //Generate Number 1,2,3
+            //Generar Numero 1,2,3
             int p = 1 + (int) (Math.random() * ((3 - 1) + 1));
             switch(p){
                 case 1:

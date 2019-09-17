@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bomberman;
 
 import java.awt.Graphics2D;
@@ -20,7 +16,7 @@ public class Img {
     static int playerHeight = 64;
     static int playerWidth = 32;
     static int BOMBSIZE = 40;
-    //Player
+    //jugador
     static Image[] UP_IMAGES = {new ImageIcon("images/BomberMan/01.gif").getImage(),
         new ImageIcon("images/BomberMan/02.gif").getImage(),
         new ImageIcon("images/BomberMan/03.gif").getImage(),
@@ -47,7 +43,7 @@ public class Img {
         new ImageIcon("images/BomberMan/44.gif").getImage(),
         new ImageIcon("images/BomberMan/45.gif").getImage(),
         new ImageIcon("images/BomberMan/46.gif").getImage()};
-    //Bricks
+    //bloques
     static ImageIcon irrompibleIcono =
             getScaledImageIcon(new ImageIcon("images/Bricks/unBreakable.gif"), brickSize, brickSize);
     static ImageIcon rompibleIcono =
@@ -82,7 +78,7 @@ public class Img {
     static Image fuegoDerecha = new ImageIcon("images/Fire/E5.gif").getImage();
     static Image fuegoIzquierda = new ImageIcon("images/Fire/W5.gif").getImage();
 
-    //BONUS/////////////////////////////////////////////
+    //poderes/////////////////////////////////////////////
     static Image velocidadPoder = getScaledImage(new ImageIcon("images/Bonus/speed.png").getImage(),50,50);
     static Image bombaPoder = getScaledImage(new ImageIcon("images/Bonus/bomb.png").getImage(),50,50);
     static Image fuegoPoder = getScaledImage(new ImageIcon("images/Bonus/fire.png").getImage(),50,50);

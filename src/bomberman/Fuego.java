@@ -1,7 +1,4 @@
-/*
- * The fire caused by explosion of bomb it stays for some duration of time if 
- * player comes at the place where there is fire then the player will die.
- */
+
 package bomberman;
 
 import java.awt.Image;

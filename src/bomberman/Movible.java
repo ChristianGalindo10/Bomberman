@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package bomberman;
 
 import bomberman.Tipos.*;
 import java.awt.Image;
 import java.awt.Rectangle;
 
-/**
- *
- * @author Hassan
- */
+
 public class Movible extends MapaBasico {
 
     public Movible(Tipos.TipoBloque _blockType, Posicion _position) {
