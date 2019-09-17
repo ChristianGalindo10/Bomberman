@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 public class BomberMan {
 
+    private int valor;
     static CopyOnWriteArrayList<Jugador> jugadores = new CopyOnWriteArrayList<Jugador>();
     static CopyOnWriteArrayList<Enemigo> enemigos = new CopyOnWriteArrayList<Enemigo>();
     static final int SIZE = 15;
@@ -21,34 +22,16 @@ public class BomberMan {
     static Mapa mapa;
     static MapaGui frame;
     JFrame menu;
-    static int[][] intMap = new int[][]{
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
-        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 1},
-        {1, 0, 1, 2, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 1},
-        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 1},
-        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
-        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    };
+    static int[][] intMap = new int[15][15];
 
     public static void main(String args[]) {
-//        new menu();
-
         new BomberMan().startGame();
 
     }
 
     public void startGame() {
         System.out.println("Starting Game");
-        mapa = new Mapa(intMap, SIZE);
+        mapa = new Mapa(construirMapa(), SIZE);
         addEnemies(3);
         addPlayers(1);
         frame = new MapaGui("Bomberman", mapa);
@@ -79,58 +62,76 @@ public class BomberMan {
         }
     }
 
-    public static void saveGame() {
-        ArrayList saveData = new ArrayList();
-        ArrayList<Posicion> enemyPositions = new ArrayList<Posicion>();
-        ArrayList<Posicion> playerPositions = new ArrayList<Posicion>();
-//        ArrayList<Position> enemyPositions = new ArrayList<Position>();
-        for (Enemigo i : enemigos) {
-            enemyPositions.add(i.getPosition());
+    public int[][] construirMapa(){
+        int[][] intMap1 = new int[][]{
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 1, 2, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+        int[][] intMap2 = new int[][]{
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 2, 2, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 2, 2, 1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 2, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 2, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+        int[][] intMap3 = new int[][]{
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 1, 2, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 0, 1, 2, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1},
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+        generarValor();
+        if(valor==1){
+            intMap=intMap1;
+        }else{
+            if(valor==2){
+                intMap=intMap2;
+            }else{
+                if(valor==3){
+                    intMap=intMap3;
+                }
+            }
         }
-        for (Jugador j : jugadores) {
-            playerPositions.add(j.getPosition());
-        }
-        saveData.add(enemyPositions);
-        saveData.add(playerPositions);
-        saveData.add(intMap);
-        try {
-            FileOutputStream fileOut1 = new FileOutputStream("gameSaveData.pos");
-            ObjectOutputStream out1 = new ObjectOutputStream(fileOut1);
-            out1.writeObject(saveData);
-        } catch (IOException i) {
-            i.printStackTrace();
-        }
+        return intMap;
     }
-
-    public static void loadGame() {
-        ArrayList saveData = null;
-        try {
-            FileInputStream fileIn = new FileInputStream("gameSaveData.pos");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            saveData = (ArrayList) in.readObject();
-        } catch (Exception i) {
-            i.printStackTrace();
-        }
-
-        ArrayList<Posicion> enemyPositions = (ArrayList) saveData.get(0);
-        ArrayList<Posicion> playerPositions = (ArrayList) saveData.get(1);
-
-        CopyOnWriteArrayList<Enemigo> newEnemigos = new CopyOnWriteArrayList<Enemigo>();
-        CopyOnWriteArrayList<Jugador> newJugadores = new CopyOnWriteArrayList<Jugador>();
-        //   Map newMap = ((Map)saveData.get(2));
-        for (Posicion i : enemyPositions) {
-            newEnemigos.add(new Enemigo(i));
-        }
-        enemigos = newEnemigos;
-
-        for (Posicion i : playerPositions) {
-            newJugadores.add(new Jugador(i));
-        }
-        jugadores = newJugadores;
-        intMap = (int[][]) saveData.get(2);
-        mapa = new Mapa(intMap, SIZE);
-        frame.stopTimers();
-        frame.dispose();
-        frame = new MapaGui("Bomberman by Hassan", mapa);
+    
+    public void generarValor(){
+        valor = (int) (Math.random() * 3) + 1;
     }
+    
+
 }

@@ -1,4 +1,3 @@
-
 package bomberman;
 
 import java.awt.Image;
@@ -6,7 +5,7 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Fuego extends MapaBasico {
+public class Fuego extends MapaBasico implements Runnable {
 
     static CopyOnWriteArrayList<Fuego> fuego = new CopyOnWriteArrayList<Fuego>();
     static int retraso = 300;
@@ -34,24 +33,9 @@ public class Fuego extends MapaBasico {
                 setImage(Img.fuegoArriba);
                 break;
         }
-//        setImage(Images.fireCenter);
-//        if(dir)
+
         fuego.add(this);
-        final Fuego c = this;
-        animacionFuego = new Thread(new Runnable() {
-            public void run() {
-                //  while (timer < explodeTimer) {
-                try {
-                    Thread.sleep(retraso);
-                    fuego.remove(c);
-                    romperBloque();
-                    matarEnemigos();
-                } catch (InterruptedException e) {
-                    System.out.println("interrupted");
-                }
-                //    }
-            }
-        });
+        animacionFuego = new Thread(this);
         animacionFuego.start();
     }
 
@@ -159,5 +143,18 @@ public class Fuego extends MapaBasico {
             }
         }
         return x;
+    }
+
+    @Override
+    public void run() {
+        final Fuego c = this;
+        try {
+            Thread.sleep(retraso);
+            fuego.remove(c);
+            romperBloque();
+            matarEnemigos();
+        } catch (InterruptedException e) {
+            System.out.println("interrupted");
+        }
     }
 }
